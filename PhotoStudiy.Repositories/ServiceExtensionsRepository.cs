@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PhotoStudiy.Repositories.Anchors;
+
 
 namespace PhotoStudiy.Repositories
 {
-    internal class ServiceExtensionsRepository
+    public static class ServiceExtensionsRepository
     {
+        public static void RegistrationRepository(this IServiceCollection service)
+        {
+            service.RegistrationOnInterface<IRepositoryAnchor>(ServiceLifetime.Scoped);
+        }
     }
 }
