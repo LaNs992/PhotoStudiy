@@ -14,8 +14,4 @@
     <ProjectReference Include="..\PhotoStudiy.Context.Contracts\PhotoStudiy.Context.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="WriteRepositoriesContracts\" />
-  </ItemGroup>
-
 </Project>
