@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Reflection;
 
-namespace TicketSelling.General
+namespace PhotoStudiy.General
 {
     /// <summary>
     /// Расширения для <see cref="IServiceCollection"/>

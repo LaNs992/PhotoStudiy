@@ -1,4 +1,4 @@
-﻿namespace TicketSelling.General
+﻿namespace PhotoStudiy.General
 {
     /// <summary>
     /// Модель инвалидации запросов
