@@ -21,5 +21,19 @@ namespace PhotoStudiy.Services.Contracts.Interface
         /// </summary>
 
         Task<PhotoSetModel?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        /// <summary>
+        /// Добавляет новый Фотосет
+        /// </summary>
+        Task<PhotoSetModel> AddAsync(PhotoSetModel model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Редактирует существующий Фотосет
+        /// </summary>
+        Task<PhotoSetModel> EditAsync(PhotoSetModel source, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удаляет существующий Фотосет
+        /// </summary>
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }

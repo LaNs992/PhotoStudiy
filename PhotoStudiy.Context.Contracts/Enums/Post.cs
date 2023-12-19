@@ -9,7 +9,7 @@ namespace PhotoStudiy.Context.Contracts.Enums
     /// <summary>
     /// Должности
     /// </summary>
-    internal enum Post
+    public enum Post
     {
         /// <summary>
         /// Кассир

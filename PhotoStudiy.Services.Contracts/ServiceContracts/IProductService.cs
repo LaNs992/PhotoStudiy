@@ -22,5 +22,19 @@ namespace PhotoStudiy.Services.Contracts.Interface
         /// </summary>
 
         Task<ProductModel?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        /// <summary>
+        /// Добавляет новый Продукт
+        /// </summary>
+        Task<ProductModel> AddAsync(ProductModel model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Редактирует существующий Продукт
+        /// </summary>
+        Task<ProductModel> EditAsync(ProductModel source, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удаляет существующий Продукт
+        /// </summary>
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }
