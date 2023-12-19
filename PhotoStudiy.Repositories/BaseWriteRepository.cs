@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories
 {
-    internal abstract class BaseWriteRepository<T> : IRepositoryWriter<T> where T : class, IEntity
+    public abstract class BaseWriteRepository<T> : IRepositoryWriter<T> where T : class, IEntity
     {
         /// <inheritdoc cref="IDbWriterContext"/>
         private readonly IDbWriterContext writerContext;
