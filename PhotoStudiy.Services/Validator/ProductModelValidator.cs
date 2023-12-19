@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoStudiy.Services.Contracts.Exception
+namespace PhotoStudiy.Services.Validator
 {
-    internal class TimeTableInvalidOperationException
+    internal class ProductModelValidator
     {
     }
 }

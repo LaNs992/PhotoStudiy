@@ -7,10 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.EnumMapping" Version="3.1.0" />
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PhotoStudiy.Context.Contracts\PhotoStudiy.Context.Contracts.csproj" />
+    <ProjectReference Include="..\PhotoStudiy.General\PhotoStudiy.General.csproj" />
     <ProjectReference Include="..\PhotoStudiy.Repositories.Contracts\PhotoStudiy.Repositories.Contracts.csproj" />
     <ProjectReference Include="..\PhotoStudiy.Services.Contracts\PhotoStudiy.Services.Contracts.csproj" />
   </ItemGroup>

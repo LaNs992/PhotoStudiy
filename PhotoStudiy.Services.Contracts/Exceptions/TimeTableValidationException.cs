@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PhotoStudiy.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoStudiy.Services.Contracts.Exception
+namespace PhotoStudiy.Services.Contracts.Exceptions
 {
     public class TimeTableValidationException: TimeTableException
     {

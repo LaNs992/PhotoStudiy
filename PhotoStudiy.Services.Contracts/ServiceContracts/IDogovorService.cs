@@ -1,4 +1,5 @@
-﻿using PhotoStudiy.Services.Contracts.Models;
+﻿using PhotoStudiy.Services.Contracts.ModelReqest;
+using PhotoStudiy.Services.Contracts.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,12 @@ namespace PhotoStudiy.Services.Contracts.Interface
         /// <summary>
         /// Добавляет новый Договор
         /// </summary>
-        Task<DogovorModel> AddAsync(DogovorModel model, CancellationToken cancellationToken);
+        Task<DogovorModel> AddAsync(DogovorRequestModel model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Редактирует существующий Договор
         /// </summary>
-        Task<DogovorModel> EditAsync(DogovorModel source, CancellationToken cancellationToken);
+        Task<DogovorModel> EditAsync(DogovorRequestModel source, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удаляет существующий Договор

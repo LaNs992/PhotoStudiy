@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoStudiy.Services.Contracts.Exception
+namespace PhotoStudiy.Services
 {
-    internal class TimeTableException
+    internal class ServiceExtensionsService
     {
     }
 }

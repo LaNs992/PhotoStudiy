@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoStudiy.Services.Contracts.Exception
+namespace PhotoStudiy.Services.Contracts.Exceptions
 {
     public class TimeTableEntityNotFoundException<TEntity> : TimeTableNotFoundException
     {
