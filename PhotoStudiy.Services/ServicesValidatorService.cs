@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
+using PhotoStudiy.Services.Validator;
 
 namespace PhotoStudiy.Services
 {
@@ -20,14 +21,14 @@ namespace PhotoStudiy.Services
         public ServicesValidatorService(IPhotographReadRepository photographReadRepository, IClientReadRepository clientReadRepository,
             IPhotoSetReadRepository photosetReadRepository, IUslugiReadRepository uslugiReadRepository,IRecvisitReadRepository recvisitReadRepository,IProductReadRepository productReadRepository)
         {
-            validators.Add(typeof(PhotographModel), new CinemaModelValidator());
+            validators.Add(typeof(PhotographModel), new PhotographModelValidator());
             validators.Add(typeof(ClientModel), new ClientModelValidator());
-            validators.Add(typeof(PhotoSetModel), new FilmModelValidator());
-            validators.Add(typeof(UslugiModel), new HallModelValidator());
-            validators.Add(typeof(RecvisitModel), new StaffModelValidator());
-            validators.Add(typeof(ProductModel), new StaffModelValidator());
-            validators.Add(typeof(DogovorModel), new TicketRequestValidator(photographReadRepository,
-                clientReadRepository, photosetReadRepository, uslugiReadRepository,recvisitReadRepository,productReadRepository));
+            validators.Add(typeof(PhotoSetModel), new PhotoSetModelValidator());
+            validators.Add(typeof(UslugiModel), new UslugiModelValidator());
+            validators.Add(typeof(RecvisitModel), new RecvisitModelValidator());
+            validators.Add(typeof(ProductModel), new ProductModelValidator());
+            validators.Add(typeof(DogovorModel), new DogovorModelValidator(photographReadRepository,
+                clientReadRepository, photosetReadRepository, productReadRepository, recvisitReadRepository, uslugiReadRepository));
         }
 
         public async Task ValidateAsync<TModel>(TModel model, CancellationToken cancellationToken)
