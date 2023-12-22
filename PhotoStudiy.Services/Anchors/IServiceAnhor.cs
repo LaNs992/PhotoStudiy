@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Anchors
 {
-    internal class IServiceAnhor
+    public interface IServiceAnhor
     {
     }
 }

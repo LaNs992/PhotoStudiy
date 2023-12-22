@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Extensions.EnumMapping;
 using PhotoStudiy.Context.Contracts.Enums;
 using PhotoStudiy.Context.Contracts.Models;
 using PhotoStudiy.Services.Contracts.Enums;
