@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using PhotoStudiy.Common.Entity.EntityInterface;
 
-namespace TicketSelling.Common.Entity.Repositories
+namespace PhotoStudiy.Common.Entity.Repositories
 {
     /// <summary>
     /// Вспомогательные методы расширения
