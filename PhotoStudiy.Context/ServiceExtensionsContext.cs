@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using PhotoStudiy.Common.Entity.InterfaceDB;
 using PhotoStudiy.Context.Contracts;
-using PhotoStudiyContext;
 
 namespace PhotoStudiy.Context
 {

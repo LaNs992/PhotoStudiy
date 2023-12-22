@@ -22,15 +22,15 @@ namespace PhotoStudiy.API.Controllers
             var result = await dogovorService.GetAllAsync(cancellationToken);
             return Ok(result.Select(x => new DogovorResponse
             {
-              Id= x.Id,
-              ClientId= x.ClientId,
-              Date= x.Date,
-              PhotographId= x.PhotographId,
-              PhotosetId= x.PhotosetId,
-              Price = x.Price,
-              ProductId=x.ProductId,
-              RecvisitId =x.RecvisitId,
-              UslugiId=x.UslugiId,
+              //Id= x.Id,
+              //ClientId= x.ClientId,
+              //Date= x.Date,
+              //PhotographId= x.PhotographId,
+              //PhotosetId= x.PhotosetId,
+              //Price = x.Price,
+              //ProductId=x.ProductId,
+              //RecvisitId =x.RecvisitId,
+              //UslugiId=x.UslugiId,
               
             }));
         }
@@ -47,15 +47,15 @@ namespace PhotoStudiy.API.Controllers
 
             return Ok(new DogovorResponse
             {
-                Id= item.Id, 
-                UslugiId= item.UslugiId,
-                RecvisitId= item.RecvisitId,
-                ProductId = item.ProductId,
-                Price = item.Price,
-                PhotosetId= item.PhotosetId,
-                PhotographId= item.PhotographId,
-                Date= item.Date,
-                ClientId = item.ClientId,
+                //Id= item.Id, 
+                //UslugiId= item.UslugiId,
+                //RecvisitId= item.RecvisitId,
+                //ProductId = item.ProductId,
+                //Price = item.Price,
+                //PhotosetId= item.PhotosetId,
+                //PhotographId= item.PhotographId,
+                //Date= item.Date,
+                //ClientId = item.ClientId,
             });
         }
     }

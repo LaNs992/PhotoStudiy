@@ -20,5 +20,20 @@ namespace PhotoStudiy.Services.Contracts.Interface
         /// </summary>
 
         Task<ClientModel?>GetByIdAsync(Guid id,CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Добавляет новый Клинта
+        /// </summary>
+        Task<ClientModel> AddAsync(ClientModel model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Редактирует существующий Клинта
+        /// </summary>
+        Task<ClientModel> EditAsync(ClientModel source, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удаляет существующий Клинта
+        /// </summary>
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }

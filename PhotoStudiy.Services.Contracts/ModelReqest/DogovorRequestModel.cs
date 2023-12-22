@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoStudiy.Services.Contracts.Models
-{
-    public class DogovorModel
+namespace PhotoStudiy.Services.Contracts.ModelReqest
+{   /// <summary>
+    /// Модель создания Договора
+    /// </summary>
+    public class DogovorRequestModel
     {
         /// <summary>
         /// Индитификатор
@@ -15,27 +17,27 @@ namespace PhotoStudiy.Services.Contracts.Models
         /// <summary>
         /// клиент
         /// </summary>
-        public ClientModel Client { get; set; }
+        public Guid ClientId { get; set; }
         /// <summary>
         /// фотограф
         /// </summary>
-        public PhotographModel Photograph { get; set; }
+        public Guid PhotographId { get; set; }
         /// <summary>
         /// фотосессия
         /// </summary>
-        public PhotoSetModel Photoset { get; set; }
+        public Guid PhotosetId { get; set; }
         /// <summary>
         /// продукт
         /// </summary>
-        public ProductModel Product { get; set; }
+        public Guid ProductId { get; set; }
         /// <summary>
         /// реквизит
         /// </summary>
-        public RecvisitModel Recvisit { get; set; }
+        public Guid RecvisitId { get; set; }
         /// <summary>
         /// Услуга
         /// </summary>
-        public UslugiModel Uslugi { get; set; }
+        public Guid UslugiId { get; set; }
 
         /// <summary>
         /// Цена итог

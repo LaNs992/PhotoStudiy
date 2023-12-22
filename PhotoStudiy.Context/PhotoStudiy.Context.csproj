@@ -20,6 +20,7 @@
     <ProjectReference Include="..\PhotoStudiy.Common.Entity\PhotoStudiy.Common.Entity.csproj" />
     <ProjectReference Include="..\PhotoStudiy.Context.Contracts.Configution\PhotoStudiy.Context.Contracts.Configution.csproj" />
     <ProjectReference Include="..\PhotoStudiy.Context.Contracts\PhotoStudiy.Context.Contracts.csproj" />
+    <ProjectReference Include="..\PhotoStudiy.General\PhotoStudiy.General.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using PhotoStudiy.Context.Contracts.Configution.Configuration;
 using PhotoStudiy.Context.Contracts.Models;
 
 
-namespace PhotoStudiyContext
+namespace PhotoStudiy.Context
 {
     public class PhotoStudiyContext : DbContext, IPhotoStudiyContext, IDbRead, IDbWriter, IUnitOfWork
     {

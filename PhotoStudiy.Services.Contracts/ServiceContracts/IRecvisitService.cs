@@ -22,5 +22,19 @@ namespace PhotoStudiy.Services.Contracts.Interface
         /// </summary>
 
         Task<RecvisitModel?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        /// <summary>
+        /// Добавляет новый Реквизит
+        /// </summary>
+        Task<RecvisitModel> AddAsync(RecvisitModel model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Редактирует существующий Реквизит
+        /// </summary>
+        Task<RecvisitModel> EditAsync(RecvisitModel source, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удаляет существующий Реквизит
+        /// </summary>
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }
