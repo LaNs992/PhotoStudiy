@@ -1,12 +1,7 @@
-﻿namespace PhotoStudiy.API.Models
+﻿namespace PhotoStudiy.API.Models.CreateRequest
 {
-    public class ProductResponse
-    {
-        /// <summary>
-        /// Индитификатор
-        /// </summary>
-        public Guid Id { get; set; }
-        /// <summary>
+    public class CreateProductRequest
+    {   /// <summary>
         /// Название продукта
         /// </summary>
         public string Name { get; set; } = string.Empty;
@@ -18,6 +13,6 @@
         /// <summary>
         /// Колличество
         /// </summary>
-        public int Amount { get; set; } 
+        public int Amount { get; set; }
     }
 }

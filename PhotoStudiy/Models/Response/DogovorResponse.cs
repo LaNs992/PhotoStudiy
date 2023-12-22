@@ -1,4 +1,6 @@
-﻿namespace PhotoStudiy.API.Models
+﻿using PhotoStudiy.Context.Contracts.Models;
+
+namespace PhotoStudiy.API.Models.Response
 {
     public class DogovorResponse
     {
@@ -9,27 +11,27 @@
         /// <summary>
         /// клиент
         /// </summary>
-        public Guid ClientId { get; set; }
+        public ClientResponse? Client { get; set; }
         /// <summary>
         /// фотограф
         /// </summary>
-        public Guid PhotographId { get; set; }
+        public PhotographResponse? Photograph { get; set; }
         /// <summary>
         /// фотосессия
         /// </summary>
-        public Guid PhotosetId { get; set; }
+        public PhotoSetResponse? Photoset { get; set; }
         /// <summary>
         /// продукт
         /// </summary>
-        public Guid ProductId { get; set; }
+        public ProductResponse? Product { get; set; }
         /// <summary>
         /// реквизит
         /// </summary>
-        public Guid RecvisitId { get; set; }
+        public RecvisitResponse? Recvisit { get; set; }
         /// <summary>
         /// Услуга
         /// </summary>
-        public Guid UslugiId { get; set; }
+        public UslugiResponse? Uslugi { get; set; }
 
         /// <summary>
         /// Цена итог
