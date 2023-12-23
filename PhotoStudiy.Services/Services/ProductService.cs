@@ -52,12 +52,12 @@ namespace PhotoStudiy.Services.Services
 
             if (targetProduct == null)
             {
-                throw new TimeTableEntityNotFoundException<Product>(id);
+                throw new PhotoStudiyEntityNotFoundException<Product>(id);
             }
 
             if (targetProduct.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Продукт с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Продукт с идентификатором {id} уже удален");
             }
 
             productWriteRepository.Delete(targetProduct);
@@ -72,7 +72,7 @@ namespace PhotoStudiy.Services.Services
 
             if (targetCinema == null)
             {
-                throw new TimeTableEntityNotFoundException<Product>(source.Id);
+                throw new PhotoStudiyEntityNotFoundException<Product>(source.Id);
             }
 
             targetCinema = mapper.Map<Product>(source);
@@ -94,7 +94,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<Product>(id);
+                throw new PhotoStudiyEntityNotFoundException<Product>(id);
             }
 
             return mapper.Map<ProductModel>(item);

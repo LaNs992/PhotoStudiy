@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhotoStudiy.API.Models;
+using PhotoStudiy.API.Models.Response;
 using PhotoStudiy.Services.Contracts.Interface;
 
 namespace PhotoStudiy.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = "Product")]
+
     public class ProductController:ControllerBase
     {
         public readonly IProductService productService;

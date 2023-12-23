@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Contracts.Exceptions
 {
-    public class TimeTableNotFoundException: TimeTableException
+    public class PhotoStudiyNotFoundException: PhotoStudiyException
     {
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="TimeTableNotFoundException"/> с указанием
+        /// Инициализирует новый экземпляр <see cref="PhotoStudiyNotFoundException"/> с указанием
         /// сообщения об ошибке
         /// </summary>
-        public TimeTableNotFoundException(string message)
+        public PhotoStudiyNotFoundException(string message)
             : base(message)
         { }
     }

@@ -45,7 +45,7 @@ namespace PhotoStudiy.Services
 
             if (!result.IsValid)
             {
-                throw new TimeTableValidationException(result.Errors.Select(x =>
+                throw new PhotoStudiyValidationException(result.Errors.Select(x =>
                 InvalidateItemModel.New(x.PropertyName, x.ErrorMessage)));
             }
         }

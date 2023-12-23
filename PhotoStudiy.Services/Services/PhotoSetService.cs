@@ -52,12 +52,12 @@ namespace PhotoStudiy.Services.Services
 
             if (targetPhotoSet == null)
             {
-                throw new TimeTableEntityNotFoundException<PhotoSet>(id);
+                throw new PhotoStudiyEntityNotFoundException<PhotoSet>(id);
             }
 
             if (targetPhotoSet.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Фотосет с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Фотосет с идентификатором {id} уже удален");
             }
 
             photoSetWriteRRepository.Delete(targetPhotoSet);
@@ -72,7 +72,7 @@ namespace PhotoStudiy.Services.Services
 
             if (targetPhotoSet == null)
             {
-                throw new TimeTableEntityNotFoundException<PhotoSet>(source.Id);
+                throw new PhotoStudiyEntityNotFoundException<PhotoSet>(source.Id);
             }
 
             targetPhotoSet = mapper.Map<PhotoSet>(source);
@@ -94,7 +94,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<PhotoSet>(id);
+                throw new PhotoStudiyEntityNotFoundException<PhotoSet>(id);
             }
 
             return mapper.Map<PhotoSetModel>(item);

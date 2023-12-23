@@ -51,12 +51,12 @@ namespace PhotoStudiy.Services.Services
             var targetPhotogragh = await photographReadRepository.GetByIdAsync(id, cancellationToken);
             if (targetPhotogragh == null)
             {
-                throw new TimeTableEntityNotFoundException<Photogragh>(id);
+                throw new PhotoStudiyEntityNotFoundException<Photogragh>(id);
             }
 
             if (targetPhotogragh.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Фотограф с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Фотограф с идентификатором {id} уже удален");
             }
 
             photographWriteRepository.Delete(targetPhotogragh);
@@ -70,7 +70,7 @@ namespace PhotoStudiy.Services.Services
             var targetPhotogragh = await photographReadRepository.GetByIdAsync(source.Id, cancellationToken);
             if (targetPhotogragh == null)
             {
-                throw new TimeTableEntityNotFoundException<Photogragh>(source.Id);
+                throw new PhotoStudiyEntityNotFoundException<Photogragh>(source.Id);
             }
 
             targetPhotogragh = mapper.Map<Photogragh>(source);
@@ -93,7 +93,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<Photogragh>(id);
+                throw new PhotoStudiyEntityNotFoundException<Photogragh>(id);
             }
 
             return mapper.Map<PhotographModel>(item);

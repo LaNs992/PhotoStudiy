@@ -68,12 +68,12 @@ namespace PhotoStudiy.Services.Services
 
             if (targetTicket == null)
             {
-                throw new TimeTableEntityNotFoundException<Dogovor>(id);
+                throw new PhotoStudiyEntityNotFoundException<Dogovor>(id);
             }
 
             if (targetTicket.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Билет с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Билет с идентификатором {id} уже удален");
             }
 
             dogovorWriteRepository.Delete(targetTicket);
@@ -88,7 +88,7 @@ namespace PhotoStudiy.Services.Services
 
             if (dogovor == null)
             {
-                throw new TimeTableEntityNotFoundException<Dogovor>(model.Id);
+                throw new PhotoStudiyEntityNotFoundException<Dogovor>(model.Id);
             }
 
             dogovor = mapper.Map<Dogovor>(model);
@@ -157,7 +157,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<Dogovor>(id);
+                throw new PhotoStudiyEntityNotFoundException<Dogovor>(id);
             }
 
             return await GetTicketModelOnMapping(item, cancellationToken);

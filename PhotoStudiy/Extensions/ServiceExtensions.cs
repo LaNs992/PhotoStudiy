@@ -8,7 +8,7 @@ using PhotoStudiy.Repositories;
 using PhotoStudiy.Services;
 using PhotoStudiy.Services.AutoMappers;
 
-namespace TicketSelling.API.Extensions
+namespace PhotoStudiy.API.Extensions
 {
     /// <summary>
     /// Расширения для <see cref="IServiceCollection"/>
@@ -36,7 +36,7 @@ namespace TicketSelling.API.Extensions
         {
             services.AddControllers(x =>
             {
-                x.Filters.Add<TicketSellingExceptionFilter>();
+                x.Filters.Add<PhotoStudiyExceptionFilter>();
             })
                 .AddNewtonsoftJson(o =>
                 {
@@ -63,7 +63,7 @@ namespace TicketSelling.API.Extensions
                 c.SwaggerDoc("Uslugi", new OpenApiInfo { Title = "Услуги", Version = "v1" });
 
 
-                var filePath = Path.Combine(AppContext.BaseDirectory, "TicketSelling.API.xml");
+                var filePath = Path.Combine(AppContext.BaseDirectory, "PhotoStudiy.API.xml");
                 c.IncludeXmlComments(filePath);
             });
         }

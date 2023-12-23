@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhotoStudiy.API.Models;
+using PhotoStudiy.API.Models.Response;
 using PhotoStudiy.Services.Contracts.Interface;
 
 namespace PhotoStudiy.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = "Dogovor")]
+
     public class DogovorController: ControllerBase
     {
         public readonly IDogovorService dogovorService;

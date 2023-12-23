@@ -53,12 +53,12 @@ namespace PhotoStudiy.Services.Services
 
             if (targetUslugi == null)
             {
-                throw new TimeTableEntityNotFoundException<Uslugi>(id);
+                throw new PhotoStudiyEntityNotFoundException<Uslugi>(id);
             }
 
             if (targetUslugi.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Услуга с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Услуга с идентификатором {id} уже удален");
             }
 
             uslugiWriteRepository.Delete(targetUslugi);
@@ -73,7 +73,7 @@ namespace PhotoStudiy.Services.Services
 
             if (targetUslugi == null)
             {
-                throw new TimeTableEntityNotFoundException<Uslugi>(source.Id);
+                throw new PhotoStudiyEntityNotFoundException<Uslugi>(source.Id);
             }
 
             targetUslugi = mapper.Map<Uslugi>(source);
@@ -96,7 +96,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<Uslugi>(id);
+                throw new PhotoStudiyEntityNotFoundException<Uslugi>(id);
             }
 
             return mapper.Map<UslugiModel>(item);

@@ -51,12 +51,12 @@ namespace PhotoStudiy.Services.Services
             var targetClient = await clientReadRepository.GetByIdAsync(id, cancellationToken);
             if (targetClient == null)
             {
-                throw new TimeTableEntityNotFoundException<Client>(id);
+                throw new PhotoStudiyEntityNotFoundException<Client>(id);
             }
 
             if (targetClient.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Клиент с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Клиент с идентификатором {id} уже удален");
             }
 
             clientWriteRepository.Delete(targetClient);
@@ -70,7 +70,7 @@ namespace PhotoStudiy.Services.Services
             var targetClient = await clientReadRepository.GetByIdAsync(source.Id, cancellationToken);
             if (targetClient == null)
             {
-                throw new TimeTableEntityNotFoundException<Client>(source.Id);
+                throw new PhotoStudiyEntityNotFoundException<Client>(source.Id);
             }
 
             targetClient = mapper.Map<Client>(source);
@@ -93,7 +93,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<Client>(id);
+                throw new PhotoStudiyEntityNotFoundException<Client>(id);
             }
 
             return mapper.Map<ClientModel>(item);

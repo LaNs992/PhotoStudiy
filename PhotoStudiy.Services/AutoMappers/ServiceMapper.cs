@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.AutoMappers
 {
-    internal class ServiceMapper:Profile
+    public class ServiceMapper:Profile
     {
         public ServiceMapper()
         {

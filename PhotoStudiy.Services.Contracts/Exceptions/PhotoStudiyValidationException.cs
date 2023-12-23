@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Contracts.Exceptions
 {
-    public class TimeTableValidationException: TimeTableException
+    public class PhotoStudiyValidationException: PhotoStudiyException
     {
         /// <summary>
         /// Ошибки
@@ -17,7 +17,7 @@ namespace PhotoStudiy.Services.Contracts.Exceptions
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="AdministrationValidationException"/>
         /// </summary>
-        public TimeTableValidationException(IEnumerable<InvalidateItemModel> errors)
+        public PhotoStudiyValidationException(IEnumerable<InvalidateItemModel> errors)
         {
             Errors = errors;
         }

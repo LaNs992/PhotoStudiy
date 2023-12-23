@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PhotoStudiy.Context.Contracts\PhotoStudiy.Context.Contracts.csproj" />
     <ProjectReference Include="..\PhotoStudiy.General\PhotoStudiy.General.csproj" />
     <ProjectReference Include="..\PhotoStudiy.Repositories.Contracts\PhotoStudiy.Repositories.Contracts.csproj" />
     <ProjectReference Include="..\PhotoStudiy.Services.Contracts\PhotoStudiy.Services.Contracts.csproj" />

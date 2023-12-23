@@ -1,7 +1,7 @@
 ﻿using PhotoStudiy.Common.Entity;
 using PhotoStudiy.Common.Entity.InterfaceDB;
 
-namespace TicketSelling.API.Extensions
+namespace PhotoStudiy.API.Extensions
 {
     /// <summary>
     /// Реализация <see cref="IDbWriterContext"/>

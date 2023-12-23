@@ -53,12 +53,12 @@ namespace PhotoStudiy.Services.Services
 
             if (targetRecvisit == null)
             {
-                throw new TimeTableEntityNotFoundException<Recvisit>(id);
+                throw new PhotoStudiyEntityNotFoundException<Recvisit>(id);
             }
 
             if (targetRecvisit.DeletedAt.HasValue)
             {
-                throw new TimeTableInvalidOperationException($"Реквизит с идентификатором {id} уже удален");
+                throw new PhotoStudiyInvalidOperationException($"Реквизит с идентификатором {id} уже удален");
             }
 
             recvisitWriteRepository.Delete(targetRecvisit);
@@ -73,7 +73,7 @@ namespace PhotoStudiy.Services.Services
 
             if (targetRecvisit == null)
             {
-                throw new TimeTableEntityNotFoundException<Recvisit>(source.Id);
+                throw new PhotoStudiyEntityNotFoundException<Recvisit>(source.Id);
             }
 
             targetRecvisit = mapper.Map<Recvisit>(source);
@@ -95,7 +95,7 @@ namespace PhotoStudiy.Services.Services
 
             if (item == null)
             {
-                throw new TimeTableEntityNotFoundException<Recvisit>(id);
+                throw new PhotoStudiyEntityNotFoundException<Recvisit>(id);
             }
 
             return mapper.Map<RecvisitModel>(item);
