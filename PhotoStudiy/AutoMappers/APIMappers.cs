@@ -59,8 +59,8 @@ namespace PhotoStudiy.API.AutoMappers
             CreateMap<RecvisitModel, RecvisitResponse>(MemberList.Destination);
             CreateMap<UslugiModel, UslugiResponse>(MemberList.Destination);
             CreateMap<DogovorModel, DogovorResponse>(MemberList.Destination);
-            CreateMap<ClientModel, ClientResponse>(MemberList.Destination)
-                .ForMember(x => x.Name, opt => opt.MapFrom(src => $"{src.Name} {src.LastName} {src.Number}"));
+            CreateMap<ClientModel, ClientResponse>(MemberList.Destination);
+               
         }
     }
 }

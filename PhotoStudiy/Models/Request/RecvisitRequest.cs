@@ -1,6 +1,8 @@
-﻿namespace PhotoStudiy.API.Models.Request
+﻿using PhotoStudiy.API.Models.CreateRequest;
+
+namespace PhotoStudiy.API.Models.Request
 {
-    public class RecvisitRequest
+    public class RecvisitRequest: CreateRecvisitRequest
     {  /// <summary>
        /// Индитификатор
        /// </summary>

@@ -22,7 +22,7 @@ namespace PhotoStudiy.Context
 
         public DbSet<Recvisit> Recvisits { get; set; }
 
-        public DbSet<Uslugi> Uslugis { get; set; }
+        public DbSet<Uslugi> Uslugs { get; set; }
         public PhotoStudiyContext(DbContextOptions<PhotoStudiyContext> options) : base(options)
         {
 
