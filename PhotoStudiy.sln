@@ -13,19 +13,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Repositories", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Repositories.Contracts", "PhotoStudiy.Repositories.Contracts\PhotoStudiy.Repositories.Contracts.csproj", "{A68049B9-205B-4A53-9631-C927402DA292}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Repositories.Tests", "PhotoStudiy.Repositories.Tests\PhotoStudiy.Repositories.Tests.csproj", "{90D1D26B-E7C7-4E5B-994E-AE5180763020}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Services", "PhotoStudiy.Services\PhotoStudiy.Services.csproj", "{01398789-6EFF-46A7-8498-07EBCAE59F8C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Services.Contracts", "PhotoStudiy.Services.Contracts\PhotoStudiy.Services.Contracts.csproj", "{370419CD-CB0E-4050-84D2-AAFC1BD911A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Services.Tests", "PhotoStudiy.Services.Tests\PhotoStudiy.Services.Tests.csproj", "{1326DCA9-9F18-4791-ABA5-EA733F22603B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Context.Tests", "PhotoStudiy.Services.Tests\PhotoStudiy.Context.Tests.csproj", "{1326DCA9-9F18-4791-ABA5-EA733F22603B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.Context.Contracts.Configution", "PhotoStudiy.Context.Contracts.Configution\PhotoStudiy.Context.Contracts.Configution.csproj", "{1598AE36-73BD-4346-BA5F-069B350E117B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Context.Contracts.Configution", "PhotoStudiy.Context.Contracts.Configution\PhotoStudiy.Context.Contracts.Configution.csproj", "{1598AE36-73BD-4346-BA5F-069B350E117B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.Common.Entity", "PhotoStudiy.Common.Entity\PhotoStudiy.Common.Entity.csproj", "{5AE8077B-AD0D-429B-8577-9D08AF631AE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.Common.Entity", "PhotoStudiy.Common.Entity\PhotoStudiy.Common.Entity.csproj", "{5AE8077B-AD0D-429B-8577-9D08AF631AE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.General", "PhotoStudiy.General\PhotoStudiy.General.csproj", "{0C384F4F-FE93-49CF-81B2-929B24DDF740}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudiy.General", "PhotoStudiy.General\PhotoStudiy.General.csproj", "{0C384F4F-FE93-49CF-81B2-929B24DDF740}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.Repositories.Test", "PhotoStudiy.Repositories.Test\PhotoStudiy.Repositories.Test.csproj", "{0F0F0DCF-C271-4B2C-881C-301E3C0A40C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,6 @@ Global
 		{A68049B9-205B-4A53-9631-C927402DA292}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A68049B9-205B-4A53-9631-C927402DA292}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A68049B9-205B-4A53-9631-C927402DA292}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90D1D26B-E7C7-4E5B-994E-AE5180763020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90D1D26B-E7C7-4E5B-994E-AE5180763020}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90D1D26B-E7C7-4E5B-994E-AE5180763020}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90D1D26B-E7C7-4E5B-994E-AE5180763020}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01398789-6EFF-46A7-8498-07EBCAE59F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01398789-6EFF-46A7-8498-07EBCAE59F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01398789-6EFF-46A7-8498-07EBCAE59F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,6 +77,10 @@ Global
 		{0C384F4F-FE93-49CF-81B2-929B24DDF740}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C384F4F-FE93-49CF-81B2-929B24DDF740}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C384F4F-FE93-49CF-81B2-929B24DDF740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0F0DCF-C271-4B2C-881C-301E3C0A40C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0F0DCF-C271-4B2C-881C-301E3C0A40C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0F0DCF-C271-4B2C-881C-301E3C0A40C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0F0DCF-C271-4B2C-881C-301E3C0A40C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.ReadRepositories
 {
-    internal class UslugiReadRepositories : IUslugiReadRepository, IRepositoryAnchor
+    public class UslugiReadRepositories : IUslugiReadRepository, IRepositoryAnchor
     {
         /// <summary>
         /// Контекст для связи с бд
@@ -33,11 +33,13 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Uslugi?> IUslugiReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Uslugi>()
+            .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 
         Task<Dictionary<Guid, Uslugi>> IUslugiReadRepository.GetByIdsAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken)
             => reader.Read<Uslugi>()
+            .NotDeletedAt()
                 .ByIds(ids)
                 .OrderBy(x => x.Name)
                 .ThenBy(x => x.Price)

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.ReadRepositories
 {
-    internal class RecvisitReadRepositories : IRecvisitReadRepository, IRepositoryAnchor
+    public class RecvisitReadRepositories : IRecvisitReadRepository, IRepositoryAnchor
     {
         /// <summary>
         /// Контекст для связи с бд
@@ -39,6 +39,7 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Dictionary<Guid, Recvisit>> IRecvisitReadRepository.GetByIdsAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken)
             => reader.Read<Recvisit>()
+                .NotDeletedAt()
                 .ByIds(ids)
                 .OrderBy(x => x.Name)
                 .ThenBy(x => x.Description)
@@ -47,6 +48,6 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
 
         Task<bool> IRecvisitReadRepository.IsNotNullAsync(Guid id, CancellationToken cancellationToken)
-            => reader.Read<Recvisit>().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
+            => reader.Read<Recvisit>().NotDeletedAt().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
     }
 }
