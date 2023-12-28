@@ -12,8 +12,8 @@ using PhotoStudiy.Context;
 namespace PhotoStudiy.Context.Migrations
 {
     [DbContext(typeof(PhotoStudiyContext))]
-    [Migration("20231223004337_CreateDB")]
-    partial class CreateDB
+    [Migration("20231228182042_APImigr")]
+    partial class APImigr
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -141,7 +141,7 @@ namespace PhotoStudiy.Context.Migrations
 
                     b.HasIndex("UslugiId");
 
-                    b.ToTable("Tickets", (string)null);
+                    b.ToTable("Dogovors", (string)null);
                 });
 
             modelBuilder.Entity("PhotoStudiy.Context.Contracts.Models.Photogragh", b =>

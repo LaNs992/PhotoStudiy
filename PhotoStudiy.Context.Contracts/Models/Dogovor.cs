@@ -12,10 +12,6 @@ namespace PhotoStudiy.Context.Contracts.Models
     public class Dogovor : BaseAuditEntity
     {
         /// <summary>
-        /// Индитификатор
-        /// </summary>
-        public Guid Id { get; set; }
-        /// <summary>
         /// клиент
         /// </summary>
         public Guid ClientId { get; set; }
@@ -56,9 +52,9 @@ namespace PhotoStudiy.Context.Contracts.Models
         public decimal Price { get; set; }
 
         /// <summary>
-        /// Дата и врремя проведения фотос
+        /// Дата и врремя проведения фотосессии
         /// </summary>
-        public DateTimeOffset Date { get; set; }
+        public DateTimeOffset Date { get; set; }=DateTimeOffset.UtcNow;
 
 
     }

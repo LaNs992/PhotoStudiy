@@ -139,7 +139,7 @@ namespace PhotoStudiy.Context.Migrations
 
                     b.HasIndex("UslugiId");
 
-                    b.ToTable("Tickets", (string)null);
+                    b.ToTable("Dogovors", (string)null);
                 });
 
             modelBuilder.Entity("PhotoStudiy.Context.Contracts.Models.Photogragh", b =>

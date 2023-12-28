@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PhotoStudiy.Context.Migrations
 {
-    public partial class CreateDB : Migration
+    public partial class APImigr : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -123,7 +123,7 @@ namespace PhotoStudiy.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tickets",
+                name: "Dogovors",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -143,39 +143,39 @@ namespace PhotoStudiy.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.PrimaryKey("PK_Dogovors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tickets_Clients_ClientId",
+                        name: "FK_Dogovors_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tickets_Photograghs_PhotographId",
+                        name: "FK_Dogovors_Photograghs_PhotographId",
                         column: x => x.PhotographId,
                         principalTable: "Photograghs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tickets_PhotoSets_PhotosetId",
+                        name: "FK_Dogovors_PhotoSets_PhotosetId",
                         column: x => x.PhotosetId,
                         principalTable: "PhotoSets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tickets_Products_ProductId",
+                        name: "FK_Dogovors_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tickets_Recvisits_RecvisitId",
+                        name: "FK_Dogovors_Recvisits_RecvisitId",
                         column: x => x.RecvisitId,
                         principalTable: "Recvisits",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tickets_Uslugs_UslugiId",
+                        name: "FK_Dogovors_Uslugs_UslugiId",
                         column: x => x.UslugiId,
                         principalTable: "Uslugs",
                         principalColumn: "Id",
@@ -188,6 +188,42 @@ namespace PhotoStudiy.Context.Migrations
                 column: "Number",
                 unique: true,
                 filter: "DeletedAt is null");
+
+            migrationBuilder.CreateIndex(
+                name: "Dogovor_Date",
+                table: "Dogovors",
+                column: "Date",
+                filter: "DeletedAt is null");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogovors_ClientId",
+                table: "Dogovors",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogovors_PhotographId",
+                table: "Dogovors",
+                column: "PhotographId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogovors_PhotosetId",
+                table: "Dogovors",
+                column: "PhotosetId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogovors_ProductId",
+                table: "Dogovors",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogovors_RecvisitId",
+                table: "Dogovors",
+                column: "RecvisitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogovors_UslugiId",
+                table: "Dogovors",
+                column: "UslugiId");
 
             migrationBuilder.CreateIndex(
                 name: "Photogragh_Number",
@@ -218,42 +254,6 @@ namespace PhotoStudiy.Context.Migrations
                 filter: "DeletedAt is null");
 
             migrationBuilder.CreateIndex(
-                name: "Dogovor_Date",
-                table: "Tickets",
-                column: "Date",
-                filter: "DeletedAt is null");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_ClientId",
-                table: "Tickets",
-                column: "ClientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_PhotographId",
-                table: "Tickets",
-                column: "PhotographId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_PhotosetId",
-                table: "Tickets",
-                column: "PhotosetId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_ProductId",
-                table: "Tickets",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_RecvisitId",
-                table: "Tickets",
-                column: "RecvisitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_UslugiId",
-                table: "Tickets",
-                column: "UslugiId");
-
-            migrationBuilder.CreateIndex(
                 name: "Uslugi_Name",
                 table: "Uslugs",
                 column: "Name",
@@ -264,7 +264,7 @@ namespace PhotoStudiy.Context.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tickets");
+                name: "Dogovors");
 
             migrationBuilder.DropTable(
                 name: "Clients");

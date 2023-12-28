@@ -12,10 +12,6 @@ namespace PhotoStudiy.Context.Contracts.Models
     public class Recvisit : BaseAuditEntity
     {
         /// <summary>
-        /// Индитификатор
-        /// </summary>
-        public Guid Id { get; set; }
-        /// <summary>
         /// Название Реквизита
         /// </summary>
         public string Name { get; set; }

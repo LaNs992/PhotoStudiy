@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhotoStudiy.Common.Entity.InterfaceDB;
 using PhotoStudiy.Context.Contracts;
+using PhotoStudiy.Context.Contracts.Configution;
 using PhotoStudiy.Context.Contracts.Configution.Configuration;
 using PhotoStudiy.Context.Contracts.Models;
 
@@ -27,7 +28,12 @@ namespace PhotoStudiy.Context
         {
 
         }
-      
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(IContextConfigurationAnchor).Assembly);
+        }
+
 
         async Task<int> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)
         {
