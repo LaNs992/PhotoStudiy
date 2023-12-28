@@ -9,11 +9,12 @@
     }
   },
   "profiles": {
-    "PhotoStudiy": {
+    "PhotoStudiy.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7269;http://localhost:5150",
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7281;http://localhost:5147",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Contracts.Exceptions
 {
-    public class TimeTableInvalidOperationException : TimeTableException
+    public class PhotoStudiyInvalidOperationException : PhotoStudiyException
     {  /// <summary>
-       /// Инициализирует новый экземпляр <see cref="TimeTableInvalidOperationException"/>
+       /// Инициализирует новый экземпляр <see cref="PhotoStudiyInvalidOperationException"/>
        /// с указанием сообщения об ошибке
        /// </summary>
-        public TimeTableInvalidOperationException(string message)
+        public PhotoStudiyInvalidOperationException(string message)
             : base(message)
         {
 

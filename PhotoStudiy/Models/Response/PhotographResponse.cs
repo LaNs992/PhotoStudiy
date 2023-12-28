@@ -1,11 +1,11 @@
-﻿namespace PhotoStudiy.API.Models
+﻿namespace PhotoStudiy.API.Models.Response
 {
-    public class ClientResponse
-    {        /// <summary>
-             /// Индитификатор
-             /// </summary>
+    public class PhotographResponse
+    {
+        /// <summary>
+        /// Индитификатор
+        /// </summary>
         public Guid Id { get; set; }
-
         /// <summary>
         /// Иия
         /// </summary>

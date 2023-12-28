@@ -1,12 +1,7 @@
-﻿namespace PhotoStudiy.API.Models
+﻿namespace PhotoStudiy.API.Models.CreateRequest
 {
-    public class RecvisitResponse
-    {
-        /// <summary>
-        /// Индитификатор
-        /// </summary>
-        public Guid Id { get; set; }
-        /// <summary>
+    public class CreateRecvisitRequest
+    {   /// <summary>
         /// Название Реквизита
         /// </summary>
         public string Name { get; set; } = string.Empty;

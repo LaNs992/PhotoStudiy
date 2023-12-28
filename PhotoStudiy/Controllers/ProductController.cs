@@ -1,53 +1,98 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using PhotoStudiy.API.Exceptions;
 using PhotoStudiy.API.Models;
+using PhotoStudiy.API.Models.CreateRequest;
+using PhotoStudiy.API.Models.Request;
+using PhotoStudiy.API.Models.Response;
 using PhotoStudiy.Services.Contracts.Interface;
+using PhotoStudiy.Services.Contracts.Models;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace PhotoStudiy.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController:ControllerBase
+    [ApiExplorerSettings(GroupName = "Product")]
+
+    public class ProductController : ControllerBase
     {
-        public readonly IProductService productService;
+        private readonly IProductService productService;
+        private readonly IMapper mapper;
 
-
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IMapper mapper)
         {
             this.productService = productService;
+            this.mapper = mapper;
         }
-        [HttpGet]
 
+        /// <summary>
+        /// Получить список Продуктов
+        /// </summary>
+        [HttpGet]
+        [ProducesResponseType(typeof(ICollection<ProductResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
             var result = await productService.GetAllAsync(cancellationToken);
-            return Ok(result.Select(x => new ProductResponse
-            {
-                Id = x.Id,
-                Name= x.Name,
-                Price= x.Price,
-                Amount = x.Amount,
-
-
-            }));
+            return Ok(result.Select(x => mapper.Map<ProductResponse>(x)));
         }
-        [HttpGet("{id:guid}")]
 
-        public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
+        /// <summary>
+        /// Получить Продукт по Id
+        /// </summary>
+        [HttpGet("{id:guid}")]
+        [ProducesResponseType(typeof(ProductResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status417ExpectationFailed)]
+        public async Task<IActionResult> GetById([Required] Guid id, CancellationToken cancellationToken)
         {
             var item = await productService.GetByIdAsync(id, cancellationToken);
-            if (item == null)
-            {
-                return NotFound($"Не удалось найти продукта с индетификтором {id}");
+            return Ok(mapper.Map<ProductResponse>(item));
+        }
 
-            }
+        /// <summary>
+        /// Добавить Продукт
+        /// </summary>
+        [HttpPost]
+        [ProducesResponseType(typeof(ProductResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiValidationExceptionsDetail), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Add(CreateProductRequest model, CancellationToken cancellationToken)
+        {
+            var filmModel = mapper.Map<ProductModel>(model);
+            var result = await productService.AddAsync(filmModel, cancellationToken);
+            return Ok(mapper.Map<ProductResponse>(result));
+        }
 
-            return Ok(new ProductResponse
-            {
-                Id = item.Id,
-                Amount= item.Amount,
-                Price= item.Price,
-                Name= item.Name,
-            });
+        /// <summary>
+        /// Изменить Продукт по Id
+        /// </summary>
+        [HttpPut]
+        [ProducesResponseType(typeof(ProductResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiValidationExceptionsDetail), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Edit(ProductRequest request, CancellationToken cancellationToken)
+        {
+            var model = mapper.Map<ProductModel>(request);
+            var result = await productService.EditAsync(model, cancellationToken);
+            return Ok(mapper.Map<ProductResponse>(result));
+        }
+
+        /// <summary>
+        /// Удалить Продукт по Id
+        /// </summary>
+        [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status417ExpectationFailed)]
+        public async Task<IActionResult> Delete([Required] Guid id, CancellationToken cancellationToken)
+        {
+            await productService.DeleteAsync(id, cancellationToken);
+            return Ok();
         }
     }
 }

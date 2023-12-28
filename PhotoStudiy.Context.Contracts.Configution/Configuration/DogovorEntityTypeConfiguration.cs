@@ -17,7 +17,7 @@ namespace PhotoStudiy.Context.Contracts.Configution.Configuration
         /// </summary>
         void IEntityTypeConfiguration<Dogovor>.Configure(EntityTypeBuilder<Dogovor> builder)
         {
-            builder.ToTable("Tickets");
+            builder.ToTable("Dogovors");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).IsRequired();
             builder.PropertyAuditConfiguration();

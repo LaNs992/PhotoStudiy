@@ -1,14 +1,9 @@
-﻿namespace PhotoStudiy.API.Models
+﻿namespace PhotoStudiy.API.Models.CreateRequest
 {
-    public class PhotoSetResponse
-    {
-        /// <summary>
-        /// Индитификатор
-        /// </summary>
-        public Guid Id { get; set; }
-        /// <summary>
-        /// Название фотосессии
-        /// </summary>
+    public class CreatePhotoSetRequest
+    {  /// <summary>
+       /// Название фотосессии
+       /// </summary>
         public string Name { get; set; } = string.Empty;
         /// <summary>
         /// Описние

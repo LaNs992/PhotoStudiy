@@ -19,6 +19,11 @@ namespace PhotoStudiy.Context.Contracts.Enums
         /// <summary>
         /// Менеджер
         /// </summary>
-        Manager
+        Manager,
+
+        /// <summary>
+        /// Неизвестно
+        /// </summary>
+        None,
     }
 }

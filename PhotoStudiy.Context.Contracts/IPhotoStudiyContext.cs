@@ -35,7 +35,7 @@ namespace PhotoStudiy.Context.Contracts
         /// <summary>
         /// услуги
         /// </summary>
-        DbSet<Uslugi> Uslugis { get; }
+        DbSet<Uslugi> Uslugs { get; }
 
 
 

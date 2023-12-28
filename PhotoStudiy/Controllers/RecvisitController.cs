@@ -1,53 +1,98 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using PhotoStudiy.API.Exceptions;
 using PhotoStudiy.API.Models;
+using PhotoStudiy.API.Models.CreateRequest;
+using PhotoStudiy.API.Models.Request;
+using PhotoStudiy.API.Models.Response;
 using PhotoStudiy.Services.Contracts.Interface;
+using PhotoStudiy.Services.Contracts.Models;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace PhotoStudiy.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RecvisitController:ControllerBase
+    [ApiExplorerSettings(GroupName = "Recvisit")]
+
+    public class RecvisitController : ControllerBase
     {
-        public readonly IRecvisitService recvisitService;
+        private readonly IRecvisitService recvisitService;
+        private readonly IMapper mapper;
 
-
-        public RecvisitController(IRecvisitService recvisitService)
+        public RecvisitController(IRecvisitService recvisitService, IMapper mapper)
         {
             this.recvisitService = recvisitService;
+            this.mapper = mapper;
         }
-        [HttpGet]
 
+        /// <summary>
+        /// Получить список Реквизитов
+        /// </summary>
+        [HttpGet]
+        [ProducesResponseType(typeof(ICollection<RecvisitResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
             var result = await recvisitService.GetAllAsync(cancellationToken);
-            return Ok(result.Select(x => new RecvisitResponse
-            {
-                Id = x.Id,
-               Name= x.Name,
-               Amount= x.Amount,
-               Description = x.Description,
-
-
-            }));
+            return Ok(result.Select(x => mapper.Map<RecvisitResponse>(x)));
         }
-        [HttpGet("{id:guid}")]
 
-        public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
+        /// <summary>
+        /// Получить Реквизит по Id
+        /// </summary>
+        [HttpGet("{id:guid}")]
+        [ProducesResponseType(typeof(RecvisitResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status417ExpectationFailed)]
+        public async Task<IActionResult> GetById([Required] Guid id, CancellationToken cancellationToken)
         {
             var item = await recvisitService.GetByIdAsync(id, cancellationToken);
-            if (item == null)
-            {
-                return NotFound($"Не удалось найти реквизита с индетификтором {id}");
+            return Ok(mapper.Map<RecvisitResponse>(item));
+        }
 
-            }
+        /// <summary>
+        /// Добавить Реквизит
+        /// </summary>
+        [HttpPost]
+        [ProducesResponseType(typeof(RecvisitResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiValidationExceptionsDetail  ), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Add(CreateRecvisitRequest model, CancellationToken cancellationToken)
+        {
+            var filmModel = mapper.Map<RecvisitModel>(model);
+            var result = await recvisitService.AddAsync(filmModel, cancellationToken);
+            return Ok(mapper.Map<RecvisitResponse>(result));
+        }
 
-            return Ok(new RecvisitResponse
-            {
-                Id = item.Id,
-               Description= item.Description,
-              Amount= item.Amount,
-              Name= item.Name,
-            });
+        /// <summary>
+        /// Изменить Реквизит по Id
+        /// </summary>
+        [HttpPut]
+        [ProducesResponseType(typeof(RecvisitResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiValidationExceptionsDetail), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Edit(RecvisitRequest request, CancellationToken cancellationToken)
+        {
+            var model = mapper.Map<RecvisitModel>(request);
+            var result = await recvisitService.EditAsync(model, cancellationToken);
+            return Ok(mapper.Map<RecvisitResponse>(result));
+        }
+
+        /// <summary>
+        /// Удалить Реквизит по Id
+        /// </summary>
+        [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiExceptionsDetail), StatusCodes.Status417ExpectationFailed)]
+        public async Task<IActionResult> Delete([Required] Guid id, CancellationToken cancellationToken)
+        {
+            await recvisitService.DeleteAsync(id, cancellationToken);
+            return Ok();
         }
     }
 }

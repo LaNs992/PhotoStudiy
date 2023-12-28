@@ -11,10 +11,7 @@ namespace PhotoStudiy.Context.Contracts.Models
     /// </summary>
     public class Uslugi : BaseAuditEntity
     {
-        /// <summary>
-        /// Индитификатор
-        /// </summary>
-        public Guid Id { get; set; }
+        
         /// <summary>
         /// Название услуги
         /// </summary>
