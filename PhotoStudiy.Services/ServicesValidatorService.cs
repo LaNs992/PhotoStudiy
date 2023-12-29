@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using PhotoStudiy.Services.Validator;
+using PhotoStudiy.Services.Contracts.ModelReqest;
 
 namespace PhotoStudiy.Services
 {
@@ -27,7 +28,7 @@ namespace PhotoStudiy.Services
             validators.Add(typeof(UslugiModel), new UslugiModelValidator());
             validators.Add(typeof(RecvisitModel), new RecvisitModelValidator());
             validators.Add(typeof(ProductModel), new ProductModelValidator());
-            validators.Add(typeof(DogovorModel), new DogovorModelValidator(photographReadRepository,
+            validators.Add(typeof(DogovorRequestModel), new DogovorModelValidator(photographReadRepository,
                 clientReadRepository, photosetReadRepository, productReadRepository, recvisitReadRepository, uslugiReadRepository));
         }
 

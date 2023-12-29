@@ -34,6 +34,7 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Recvisit?> IRecvisitReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Recvisit>()
+                .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 

@@ -1,4 +1,5 @@
 ﻿using PhotoStudiy.Context.Contracts.Models;
+using PhotoStudiy.Services.Contracts.ModelReqest;
 using PhotoStudiy.Services.Contracts.Models;
 using System;
 using System.Collections;
@@ -94,7 +95,7 @@ namespace PhotoStudiy.Repositories.Test
         static internal Dogovor Dogovor(Action<Dogovor>? settings = null)
         {
             var result = new Dogovor
-            {
+            {  
                 Date = DateTimeOffset.UtcNow,
                 Price = 12300
             };
@@ -163,6 +164,7 @@ namespace PhotoStudiy.Repositories.Test
         {
             var result = new RecvisitModel
             {
+                Id = Guid.NewGuid(),
                 Name = $"{Guid.NewGuid():N}",
                 Description = $"{Guid.NewGuid():N}",
                 Amount = 2
@@ -174,19 +176,21 @@ namespace PhotoStudiy.Repositories.Test
         {
             var result = new UslugiModel
             {
+                Id = Guid.NewGuid(),
                 Name = $"{Guid.NewGuid():N}",
-                Price = $"{Guid.NewGuid():N}"
+                Price = $"3333"
 
             };
             settings?.Invoke(result);
             return result;
         }
-        static internal DogovorModel DogovorModel(Action<DogovorModel>? settings = null)
+        static public DogovorRequestModel DogovorRequestModel(Action<DogovorRequestModel>? settings = null)
         {
-            var result = new DogovorModel
+            var result = new DogovorRequestModel
             {
-                Date = DateTimeOffset.UtcNow,
-                Price = 12300
+                Id = Guid.NewGuid(),
+                Date = DateTimeOffset.Now.AddDays(1),
+                Price = 12222
             };
 
             settings?.Invoke(result);

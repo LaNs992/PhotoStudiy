@@ -80,10 +80,10 @@ namespace PhotoStudiy.Services.Test.TestServices
                 .NotBeNull()
                 .And.BeEquivalentTo(new
                 {
-                    result.Id,
-                    result.Name,
-                    result.Price,
-                    result.Amount
+                    target.Id,
+                    target.Name,
+                    target.Price,
+                    target.Amount
                 });
         }
 

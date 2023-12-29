@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using PhotoStudiy.Common.Entity.InterfaceDB;
+using PhotoStudiy.Context.Contracts.Models;
 using PhotoStudiy.Context.Tests;
 using PhotoStudiy.Repositories.Contracts.ReadRepositoriesContracts;
 using PhotoStudiy.Repositories.ReadRepositories;
 using PhotoStudiy.Repositories.Test;
 using PhotoStudiy.Repositories.WriteRepositories;
 using PhotoStudiy.Services.AutoMappers;
+using PhotoStudiy.Services.Contracts.Exceptions;
+using PhotoStudiy.Services.Contracts.Interface;
 using PhotoStudiy.Services.Services;
 using System;
 using System.Collections;
@@ -19,9 +22,10 @@ using Xunit;
 
 namespace PhotoStudiy.Services.Test.TestServices
 {
-    internal class RecvisitServiceTest : PhotoStudiyContextMemory
+    public class RecvisitServiceTest : PhotoStudiyContextMemory
     {
-        private readonly IStaffService staffService;
+        private readonly IRecvisitService recvisitService;
+        private readonly RecvisitReadRepositories recvisitReadRepositories;
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="StaffServiceTest"/>
@@ -32,15 +36,15 @@ namespace PhotoStudiy.Services.Test.TestServices
             {
                 cfg.AddProfile(new ServiceMapper());
             });
-            productsReadRepositories = new ProductsReadRepositories(Reader);
-            productService = new ProductService(productsReadRepositories, config.CreateMapper(),
-            new ProductsWriteRepository(WriterContext), UnitOfWork,
+            recvisitReadRepositories = new RecvisitReadRepositories(Reader);
+            recvisitService = new RecvisitService(recvisitReadRepositories, config.CreateMapper(),
+            new RecvisitWriteRepository(WriterContext), UnitOfWork,
             new ServicesValidatorService(new PhotographReadRepositories(Reader), new ClientReadRepositories(Reader),
-             new PhotoSetReadRepositories(Reader), new UslugiReadRepositories(Reader), new RecvisitReadRepositories(Reader), productsReadRepositories));
+             new PhotoSetReadRepositories(Reader), new UslugiReadRepositories(Reader), recvisitReadRepositories, new ProductsReadRepositories(Reader)));
         }
 
         /// <summary>
-        /// Получение <see cref="Staff"/> по идентификатору возвращает null
+        /// Получение <see cref="Recvisit"/> по идентификатору возвращает null
         /// </summary>
         [Fact]
         public async Task GetByIdShouldReturnNull()
@@ -49,26 +53,26 @@ namespace PhotoStudiy.Services.Test.TestServices
             var id = Guid.NewGuid();
 
             // Act
-            Func<Task> result = () => staffService.GetByIdAsync(id, CancellationToken);
+            Func<Task> result = () => recvisitService.GetByIdAsync(id, CancellationToken);
 
             // Assert
-            await result.Should().ThrowAsync<TimeTableEntityNotFoundException<Staff>>()
+            await result.Should().ThrowAsync<PhotoStudiyEntityNotFoundException<Recvisit>>()
                 .WithMessage($"*{id}*");
         }
 
         /// <summary>
-        /// Получение <see cref="Staff"/> по идентификатору возвращает данные
+        /// Получение <see cref="Recvisit"/> по идентификатору возвращает данные
         /// </summary>
         [Fact]
         public async Task GetByIdShouldReturnValue()
         {
             //Arrange
-            var target = TestDataGenerator.Staff();
-            await Context.Staffs.AddAsync(target);
+            var target = TestDataGenerator.Recvisit();
+            await Context.Recvisits.AddAsync(target);
             await Context.SaveChangesAsync(CancellationToken);
 
             // Act
-            var result = await staffService.GetByIdAsync(target.Id, CancellationToken);
+            var result = await recvisitService.GetByIdAsync(target.Id, CancellationToken);
 
             // Assert
             result.Should()
@@ -76,21 +80,20 @@ namespace PhotoStudiy.Services.Test.TestServices
                 .And.BeEquivalentTo(new
                 {
                     target.Id,
-                    target.Age,
-                    target.FirstName,
-                    target.LastName,
-                    target.Patronymic
+                    target.Name,
+                    target.Description,
+                    target.Amount
                 });
         }
 
         /// <summary>
-        /// Получение <see cref="IEnumerable{Staff}"/> по идентификаторам возвращает пустую коллекцию
+        /// Получение <see cref="IEnumerable{Recvisit}"/> по идентификаторам возвращает пустую коллекцию
         /// </summary>
         [Fact]
         public async Task GetAllShouldReturnEmpty()
         {
             // Act
-            var result = await staffService.GetAllAsync(CancellationToken);
+            var result = await recvisitService.GetAllAsync(CancellationToken);
 
             // Assert
             result.Should()
@@ -99,20 +102,20 @@ namespace PhotoStudiy.Services.Test.TestServices
         }
 
         /// <summary>
-        /// Получение <see cref="Staff"/> по идентификаторам возвращает данные
+        /// Получение <see cref="Recvisit"/> по идентификаторам возвращает данные
         /// </summary>
         [Fact]
         public async Task GetAllShouldReturnValues()
         {
             //Arrange
-            var target = TestDataGenerator.Staff();
+            var target = TestDataGenerator.Recvisit();
 
-            await Context.Staffs.AddRangeAsync(target,
-                TestDataGenerator.Staff(x => x.DeletedAt = DateTimeOffset.UtcNow));
+            await Context.Recvisits.AddRangeAsync(target,
+                TestDataGenerator.Recvisit(x => x.DeletedAt = DateTimeOffset.UtcNow));
             await Context.SaveChangesAsync(CancellationToken);
 
             // Act
-            var result = await staffService.GetAllAsync(CancellationToken);
+            var result = await recvisitService.GetAllAsync(CancellationToken);
 
             // Assert
             result.Should()
@@ -122,7 +125,7 @@ namespace PhotoStudiy.Services.Test.TestServices
         }
 
         /// <summary>
-        /// Удаление несуществуюущего <see cref="Staff"/>
+        /// Удаление несуществуюущего <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task DeletingNonExistentCinemaReturnExсeption()
@@ -131,148 +134,147 @@ namespace PhotoStudiy.Services.Test.TestServices
             var id = Guid.NewGuid();
 
             // Act
-            Func<Task> result = () => staffService.DeleteAsync(id, CancellationToken);
+            Func<Task> result = () => recvisitService.DeleteAsync(id, CancellationToken);
 
             // Assert
-            await result.Should().ThrowAsync<TimeTableEntityNotFoundException<Staff>>()
+            await result.Should().ThrowAsync<PhotoStudiyEntityNotFoundException<Recvisit>>()
                 .WithMessage($"*{id}*");
         }
 
         /// <summary>
-        /// Удаление удаленного <see cref="Staff"/>
+        /// Удаление удаленного <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task DeletingDeletedCinemaReturnExсeption()
         {
             //Arrange
-            var model = TestDataGenerator.Staff(x => x.DeletedAt = DateTime.UtcNow);
-            await Context.Staffs.AddAsync(model);
+            var model = TestDataGenerator.Recvisit(x => x.DeletedAt = DateTime.UtcNow);
+            await Context.Recvisits.AddAsync(model);
             await Context.SaveChangesAsync(CancellationToken);
 
             // Act
-            Func<Task> result = () => staffService.DeleteAsync(model.Id, CancellationToken);
+            Func<Task> result = () => recvisitService.DeleteAsync(model.Id, CancellationToken);
 
             // Assert
-            await result.Should().ThrowAsync<TimeTableEntityNotFoundException<Staff>>()
+            await result.Should().ThrowAsync<PhotoStudiyEntityNotFoundException<Recvisit>>()
                 .WithMessage($"*{model.Id}*");
         }
 
         /// <summary>
-        /// Удаление <see cref="Staff"/>
+        /// Удаление <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task DeleteShouldWork()
         {
             //Arrange
-            var model = TestDataGenerator.Staff();
-            await Context.Staffs.AddAsync(model);
+            var model = TestDataGenerator.Recvisit();
+            await Context.Recvisits.AddAsync(model);
             await UnitOfWork.SaveChangesAsync(CancellationToken);
 
             //Act
-            Func<Task> act = () => staffService.DeleteAsync(model.Id, CancellationToken);
+            Func<Task> act = () => recvisitService.DeleteAsync(model.Id, CancellationToken);
 
             // Assert
             await act.Should().NotThrowAsync();
-            var entity = Context.Staffs.Single(x => x.Id == model.Id);
+            var entity = Context.Recvisits.Single(x => x.Id == model.Id);
             entity.Should().NotBeNull();
             entity.DeletedAt.Should().NotBeNull();
         }
 
         /// <summary>
-        /// Добавление <see cref="Staff"/>
+        /// Добавление <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task AddShouldWork()
         {
             //Arrange
-            var model = TestDataGenerator.StaffModel();
+            var model = TestDataGenerator.RecvisitModel();
 
             //Act
-            Func<Task> act = () => staffService.AddAsync(model, CancellationToken);
+            Func<Task> act = () => recvisitService.AddAsync(model, CancellationToken);
 
             // Assert
             await act.Should().NotThrowAsync();
-            var entity = Context.Staffs.Single(x => x.Id == model.Id);
+            var entity = Context.Recvisits.Single(x => x.Id == model.Id);
             entity.Should().NotBeNull();
             entity.DeletedAt.Should().BeNull();
         }
 
         /// <summary>
-        /// Добавление не валидируемого <see cref="Staff"/>
+        /// Добавление не валидируемого <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task AddShouldValidationException()
         {
             //Arrange
-            var model = TestDataGenerator.StaffModel(x => x.FirstName = "q");
+            var model = TestDataGenerator.RecvisitModel(x => x.Name = "q");
 
             //Act
-            Func<Task> act = () => staffService.AddAsync(model, CancellationToken);
+            Func<Task> act = () => recvisitService.AddAsync(model, CancellationToken);
 
             // Assert
-            await act.Should().ThrowAsync<TimeTableValidationException>();
+            await act.Should().ThrowAsync<PhotoStudiyValidationException>();
         }
 
         /// <summary>
-        /// Изменение несуществующего <see cref="Staff"/>
+        /// Изменение несуществующего <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task EditShouldNotFoundException()
         {
             //Arrange
-            var model = TestDataGenerator.StaffModel();
+            var model = TestDataGenerator.RecvisitModel();
 
             //Act
-            Func<Task> act = () => staffService.EditAsync(model, CancellationToken);
+            Func<Task> act = () => recvisitService.EditAsync(model, CancellationToken);
 
             // Assert
-            await act.Should().ThrowAsync<TimeTableEntityNotFoundException<Staff>>()
+            await act.Should().ThrowAsync<PhotoStudiyEntityNotFoundException<Recvisit>>()
                 .WithMessage($"*{model.Id}*");
         }
 
         /// <summary>
-        /// Изменение невалидируемого <see cref="Staff"/>
+        /// Изменение невалидируемого <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task EditShouldValidationException()
         {
             //Arrange
-            var model = TestDataGenerator.StaffModel(x => x.FirstName = "q");
+            var model = TestDataGenerator.RecvisitModel(x => x.Name = "q");
 
             //Act
-            Func<Task> act = () => staffService.EditAsync(model, CancellationToken);
+            Func<Task> act = () => recvisitService.EditAsync(model, CancellationToken);
 
             // Assert
-            await act.Should().ThrowAsync<TimeTableValidationException>();
+            await act.Should().ThrowAsync<PhotoStudiyValidationException>();
         }
 
         /// <summary>
-        /// Изменение <see cref="Staff"/>
+        /// Изменение <see cref="Recvisit"/>
         /// </summary>
         [Fact]
         public async Task EditShouldWork()
         {
             //Arrange
-            var model = TestDataGenerator.StaffModel();
-            var staff = TestDataGenerator.Staff(x => x.Id = model.Id);
-            await Context.Staffs.AddAsync(staff);
+            var model = TestDataGenerator.RecvisitModel();
+            var staff = TestDataGenerator.Recvisit(x => x.Id = model.Id);
+            await Context.Recvisits.AddAsync(staff);
             await UnitOfWork.SaveChangesAsync(CancellationToken);
 
             //Act
-            Func<Task> act = () => staffService.EditAsync(model, CancellationToken);
+            Func<Task> act = () => recvisitService.EditAsync(model, CancellationToken);
 
             // Assert
             await act.Should().NotThrowAsync();
-            var entity = Context.Staffs.Single(x => x.Id == staff.Id);
+            var entity = Context.Recvisits.Single(x => x.Id == staff.Id);
             entity.Should().NotBeNull()
                 .And
                 .BeEquivalentTo(new
                 {
                     model.Id,
-                    model.FirstName,
-                    model.LastName,
-                    model.Age,
-                    model.Patronymic
+                    model.Name,
+                    model.Description,
+                    model.Amount
                 });
         }
     }

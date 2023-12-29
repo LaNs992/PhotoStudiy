@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Validator
 {
-    internal class DogovorModelValidator : AbstractValidator<DogovorRequestModel>
+    public class DogovorModelValidator : AbstractValidator<DogovorRequestModel>
     {
         private readonly IPhotographReadRepository photographReadRepository;
         private readonly IClientReadRepository clientReadRepository;
@@ -65,7 +65,7 @@ namespace PhotoStudiy.Services.Validator
                 .GreaterThan(DateTimeOffset.Now.AddMinutes(1)).WithMessage(MessageForValidation.InclusiveBetweenMessage);
 
             RuleFor(x => x.Price)
-                .InclusiveBetween(100, 5000).WithMessage(MessageForValidation.InclusiveBetweenMessage);
+                .InclusiveBetween(1, 100000).WithMessage(MessageForValidation.InclusiveBetweenMessage);
         }
     }
     }

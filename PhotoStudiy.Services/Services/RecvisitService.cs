@@ -56,10 +56,7 @@ namespace PhotoStudiy.Services.Services
                 throw new PhotoStudiyEntityNotFoundException<Recvisit>(id);
             }
 
-            if (targetRecvisit.DeletedAt.HasValue)
-            {
-                throw new PhotoStudiyInvalidOperationException($"Реквизит с идентификатором {id} уже удален");
-            }
+           
 
             recvisitWriteRepository.Delete(targetRecvisit);
             await unitOfWork.SaveChangesAsync(cancellationToken);

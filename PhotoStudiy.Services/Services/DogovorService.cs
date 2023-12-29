@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Services
 {
-    internal class DogovorService : IDogovorService, IServiceAnhor
+    public class DogovorService : IDogovorService, IServiceAnhor
     {
         private readonly IDogovorWriteRepository dogovorWriteRepository;
         private readonly IDogovorReadRepository dogovorReadRepository;
@@ -71,10 +71,7 @@ namespace PhotoStudiy.Services.Services
                 throw new PhotoStudiyEntityNotFoundException<Dogovor>(id);
             }
 
-            if (targetTicket.DeletedAt.HasValue)
-            {
-                throw new PhotoStudiyInvalidOperationException($"Билет с идентификатором {id} уже удален");
-            }
+            
 
             dogovorWriteRepository.Delete(targetTicket);
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -82,6 +79,7 @@ namespace PhotoStudiy.Services.Services
 
         async Task<DogovorModel> IDogovorService.EditAsync(DogovorRequestModel model, CancellationToken cancellationToken)
         {
+
             await validatorService.ValidateAsync(model, cancellationToken);
 
             var dogovor = await dogovorReadRepository.GetByIdAsync(model.Id, cancellationToken);

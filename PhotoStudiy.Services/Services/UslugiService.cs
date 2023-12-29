@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Services
 {
-    internal class UslugiService : IUslugiService, IServiceAnhor
+    public class UslugiService : IUslugiService, IServiceAnhor
     {
         private readonly IUslugiWriteRepository uslugiWriteRepository;
         private readonly IUslugiReadRepository uslugiReadRepository;
