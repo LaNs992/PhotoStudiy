@@ -14,7 +14,7 @@ using PhotoStudiy.Services.Validator;
 
 namespace PhotoStudiy.Services
 {
-    internal class ServicesValidatorService : IServiceValidatorService
+    public class ServicesValidatorService : IServiceValidatorService
     {
         private readonly Dictionary<Type, IValidator> validators = new Dictionary<Type, IValidator>();
 

@@ -25,7 +25,7 @@ namespace PhotoStudiy.Services.Validator
             RuleFor(x => x.Number)
                 .NotEmpty().WithMessage(MessageForValidation.DefaultMessage)
                 .NotNull().WithMessage(MessageForValidation.DefaultMessage)
-                .Length(9, 9).WithMessage(MessageForValidation.LengthMessage);
+                .Length(9, 32).WithMessage(MessageForValidation.LengthMessage);
 
         }
     }
