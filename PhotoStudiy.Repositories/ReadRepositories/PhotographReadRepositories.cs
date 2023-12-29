@@ -34,6 +34,7 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Photogragh?> IPhotographReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Photogragh>()
+                .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 

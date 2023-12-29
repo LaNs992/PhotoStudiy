@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.Test
 {
-    internal static class TestDataGenerator
+    public static class TestDataGenerator
     {
-        static internal Photogragh Photogragh(Action<Photogragh>? settings = null)
+        static public Photogragh Photogragh(Action<Photogragh>? settings = null)
         {
             var result = new Photogragh
             {
@@ -103,43 +103,43 @@ namespace PhotoStudiy.Repositories.Test
             settings?.Invoke(result);
             return result;
         }
-        static internal Photogragh PhotograghModel(Action<Photogragh>? settings = null)
+        static internal PhotographModel PhotograghModel(Action<PhotographModel>? settings = null)
         {
-            var result = new Photogragh
+            var result = new PhotographModel
             {
+                Id = Guid.NewGuid(),
                 Name = $"{Guid.NewGuid():N}",
                 LastName = $"{Guid.NewGuid():N}",
-                Number = $"{Guid.NewGuid():N}"
+                Number = "891232333"
             };
-            result.BaseAuditSetParamtrs();
 
             settings?.Invoke(result);
             return result;
         }
 
-        static internal PhotoSet PhotoSetModel(Action<PhotoSet>? settings = null)
+        static internal PhotoSetModel PhotoSetModel(Action<PhotoSetModel>? settings = null)
         {
-            var result = new PhotoSet
+            var result = new PhotoSetModel
             {
+                Id= Guid.NewGuid(),
                 Name = $"{Guid.NewGuid():N}",
                 Description = $"{Guid.NewGuid():N}",
-                Price = $"{Guid.NewGuid():N}"
+                Price = $"33333"
             };
-            result.BaseAuditSetParamtrs();
 
             settings?.Invoke(result);
             return result;
         }
 
-        static internal Product ProductModel(Action<Product>? settings = null)
+        static internal ProductModel ProductModel(Action<ProductModel>? settings = null)
         {
-            var result = new Product
+            var result = new ProductModel
             {
-                Name = $"{Guid.NewGuid():N}",
-                Price = $"{Guid.NewGuid():N}",
+                Id = Guid.NewGuid(),
+                Name = $"Книга печать",
+                Price = $"печать",
                 Amount = 34
             };
-            result.BaseAuditSetParamtrs();
 
             settings?.Invoke(result);
             return result;
@@ -159,38 +159,35 @@ namespace PhotoStudiy.Repositories.Test
             return result;
         }
 
-        static internal Recvisit RecvisitModel(Action<Recvisit>? settings = null)
+        static internal RecvisitModel RecvisitModel(Action<RecvisitModel>? settings = null)
         {
-            var result = new Recvisit
+            var result = new RecvisitModel
             {
                 Name = $"{Guid.NewGuid():N}",
                 Description = $"{Guid.NewGuid():N}",
                 Amount = 2
             };
-            result.BaseAuditSetParamtrs();
             settings?.Invoke(result);
             return result;
         }
-        static internal Uslugi UslugiModel(Action<Uslugi>? settings = null)
+        static internal UslugiModel UslugiModel(Action<UslugiModel>? settings = null)
         {
-            var result = new Uslugi
+            var result = new UslugiModel
             {
                 Name = $"{Guid.NewGuid():N}",
                 Price = $"{Guid.NewGuid():N}"
 
             };
-            result.BaseAuditSetParamtrs();
             settings?.Invoke(result);
             return result;
         }
-        static internal Dogovor DogovorModel(Action<Dogovor>? settings = null)
+        static internal DogovorModel DogovorModel(Action<DogovorModel>? settings = null)
         {
-            var result = new Dogovor
+            var result = new DogovorModel
             {
                 Date = DateTimeOffset.UtcNow,
                 Price = 12300
             };
-            result.BaseAuditSetParamtrs();
 
             settings?.Invoke(result);
             return result;

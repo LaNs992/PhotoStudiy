@@ -118,7 +118,7 @@ namespace PhotoStudiy.Services.Test.TestServices
         /// Удаление несуществуюущего <see cref="Client"/>
         /// </summary>
         [Fact]
-        public async Task DeletingNonExistentCinemaReturnExсeption()
+        public async Task DeletingNonExistentClientReturnExсeption()
         {
             //Arrange
             var id = Guid.NewGuid();
@@ -135,7 +135,7 @@ namespace PhotoStudiy.Services.Test.TestServices
         /// Удаление удаленного <see cref="Client"/>
         /// </summary>
         [Fact]
-        public async Task DeletingDeletedCinemaReturnExсeption()
+        public async Task DeletingDeletedClientReturnExсeption()
         {
             //Arrange
             var model = TestDataGenerator.Client(x => x.DeletedAt = DateTime.UtcNow);

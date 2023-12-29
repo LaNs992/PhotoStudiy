@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.WriteRepositories
 {
-    internal class PhotoSetWriteRepository : BaseWriteRepository<PhotoSet>, IPhotoSetWriteRepository, IRepositoryAnchor
+    public class PhotoSetWriteRepository : BaseWriteRepository<PhotoSet>, IPhotoSetWriteRepository, IRepositoryAnchor
     {
         public PhotoSetWriteRepository(IDbWriterContext writerContext)
             : base(writerContext)
