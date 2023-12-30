@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.ReadRepositories
 {
-    internal class PhotographReadRepositories : IPhotographReadRepository, IRepositoryAnchor
+    public class PhotographReadRepositories : IPhotographReadRepository, IRepositoryAnchor
     {
         /// <summary>
         /// Контекст для связи с бд
@@ -34,6 +34,7 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Photogragh?> IPhotographReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Photogragh>()
+                .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 

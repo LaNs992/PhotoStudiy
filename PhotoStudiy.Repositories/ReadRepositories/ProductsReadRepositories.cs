@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.ReadRepositories
 {
-    internal class ProductsReadRepositories : IProductReadRepository, IRepositoryAnchor
+    public class ProductsReadRepositories : IProductReadRepository, IRepositoryAnchor
     {
         /// <summary>
         /// Контекст для связи с бд
@@ -34,11 +34,13 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Product?> IProductReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Product>()
+                 .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 
         Task<Dictionary<Guid, Product>> IProductReadRepository.GetByIdsAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken)
             => reader.Read<Product>()
+                .NotDeletedAt()
                 .ByIds(ids)
                 .OrderBy(x => x.Name)
                 .ThenBy(x => x.Price)
@@ -47,6 +49,7 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
 
         Task<bool> IProductReadRepository.IsNotNullAsync(Guid id, CancellationToken cancellationToken)
-            => reader.Read<Product>().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
+            => reader.Read<Product>().NotDeletedAt()
+.AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
     }
 }

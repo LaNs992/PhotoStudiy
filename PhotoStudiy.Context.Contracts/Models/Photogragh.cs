@@ -11,7 +11,10 @@ namespace PhotoStudiy.Context.Contracts.Models
     /// </summary>
     public class Photogragh : BaseAuditEntity
     {
-       
+        /// <summary>
+        /// Индитификатор
+        /// </summary>
+        public Guid Id { get; set; }
         /// <summary>
         /// Иия
         /// </summary>

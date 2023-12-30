@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.ReadRepositories
 {
-    internal class PhotoSetReadRepositories : IPhotoSetReadRepository, IRepositoryAnchor
+    public class PhotoSetReadRepositories : IPhotoSetReadRepository, IRepositoryAnchor
     {
         /// <summary>
         /// Контекст для связи с бд
@@ -34,11 +34,13 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<PhotoSet?> IPhotoSetReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<PhotoSet>()
+              .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 
         Task<Dictionary<Guid, PhotoSet>> IPhotoSetReadRepository.GetByIdsAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken)
             => reader.Read<PhotoSet>()
+                 .NotDeletedAt()
                 .ByIds(ids)
                 .OrderBy(x => x.Name)
                 .ThenBy(x => x.Description)
@@ -47,6 +49,6 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
 
         Task<bool> IPhotoSetReadRepository.IsNotNullAsync(Guid id, CancellationToken cancellationToken)
-            => reader.Read<PhotoSet>().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
+            => reader.Read<PhotoSet>().NotDeletedAt().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
     }
 }

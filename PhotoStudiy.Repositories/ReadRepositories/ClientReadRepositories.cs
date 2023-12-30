@@ -34,6 +34,7 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Client?> IClientReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Client>()
+            .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
 
@@ -48,6 +49,6 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
 
         Task<bool> IClientReadRepository.IsNotNullAsync(Guid id, CancellationToken cancellationToken)
-            => reader.Read<Client>().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
+            => reader.Read<Client>().NotDeletedAt().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
     }
 }

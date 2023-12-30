@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Repositories.ReadRepositories
 {
-    internal class DogovorReadRepositories : IDogovorReadRepository, IRepositoryAnchor
+    public class DogovorReadRepositories : IDogovorReadRepository, IRepositoryAnchor
     {
         /// <summary>
         /// Контекст для связи с бд
@@ -32,9 +32,10 @@ namespace PhotoStudiy.Repositories.ReadRepositories
 
         Task<Dogovor?> IDogovorReadRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => reader.Read<Dogovor>()
+            .NotDeletedAt()
                 .ById(id)
                 .FirstOrDefaultAsync(cancellationToken);
         Task<bool> IDogovorReadRepository.IsNotNullAsync(Guid id, CancellationToken cancellationToken)
-            => reader.Read<Dogovor>().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
+            => reader.Read<Dogovor>().NotDeletedAt().AnyAsync(x => x.Id == id && !x.DeletedAt.HasValue, cancellationToken);
     }
 }

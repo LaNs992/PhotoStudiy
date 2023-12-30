@@ -45,6 +45,6 @@ namespace PhotoStudiy.Services.Contracts.Models
         /// <summary>
         /// Дата и врремя проведения фотос
         /// </summary>
-        public DateTimeOffset Date { get; set; }
+        public DateTimeOffset Date { get; set; } =DateTimeOffset.UtcNow;
     }
 }

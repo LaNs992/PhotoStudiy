@@ -54,11 +54,7 @@ namespace PhotoStudiy.Services.Services
                 throw new PhotoStudiyEntityNotFoundException<Photogragh>(id);
             }
 
-            if (targetPhotogragh.DeletedAt.HasValue)
-            {
-                throw new PhotoStudiyInvalidOperationException($"Фотограф с идентификатором {id} уже удален");
-            }
-
+          
             photographWriteRepository.Delete(targetPhotogragh);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace PhotoStudiy.Services.Services
 {
-    internal class ProductService : IProductService, IServiceAnhor
+    public class ProductService : IProductService, IServiceAnhor
     {
         private readonly IProductReadRepository productReadRepositiry;
         private readonly IProductWriteRepository productWriteRepository;
@@ -55,10 +55,7 @@ namespace PhotoStudiy.Services.Services
                 throw new PhotoStudiyEntityNotFoundException<Product>(id);
             }
 
-            if (targetProduct.DeletedAt.HasValue)
-            {
-                throw new PhotoStudiyInvalidOperationException($"Продукт с идентификатором {id} уже удален");
-            }
+           
 
             productWriteRepository.Delete(targetProduct);
             await unitOfWork.SaveChangesAsync(cancellationToken);
