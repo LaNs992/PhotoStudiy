@@ -61,8 +61,8 @@ namespace PhotoStudiy.Services.Validator
 
 
             RuleFor(x => x.Date)
-                .NotEmpty().WithMessage(MessageForValidation.DefaultMessage)
-                .GreaterThan(DateTimeOffset.Now.AddMinutes(1)).WithMessage(MessageForValidation.InclusiveBetweenMessage);
+                .NotEmpty().WithMessage(MessageForValidation.DefaultMessage);
+               
 
             RuleFor(x => x.Price)
                 .InclusiveBetween(1, 100000).WithMessage(MessageForValidation.InclusiveBetweenMessage);

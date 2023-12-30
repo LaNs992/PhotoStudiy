@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.Repositories.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.Services.Test", "PhotoStudiy.Services.Test\PhotoStudiy.Services.Test.csproj", "{DFA104A9-5214-4A37-A09D-9223B179AF90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudiy.API.Tests", "PhotoStudiy.API.Tests\PhotoStudiy.API.Tests.csproj", "{C5C301C6-3E57-4FFD-8094-04BC908CF395}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{DFA104A9-5214-4A37-A09D-9223B179AF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFA104A9-5214-4A37-A09D-9223B179AF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFA104A9-5214-4A37-A09D-9223B179AF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C301C6-3E57-4FFD-8094-04BC908CF395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C301C6-3E57-4FFD-8094-04BC908CF395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C301C6-3E57-4FFD-8094-04BC908CF395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C301C6-3E57-4FFD-8094-04BC908CF395}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -34,6 +34,6 @@ namespace PhotoStudiy.API.Models.CreateRequest
         /// <summary>
         /// Дата и врремя проведения фотос
         /// </summary>
-        public DateTimeOffset Date { get; set; }
+        public DateTimeOffset Date { get; set; } = DateTimeOffset.UtcNow;
     }
 }
